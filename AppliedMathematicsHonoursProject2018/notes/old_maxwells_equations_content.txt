@@ -1,0 +1,139 @@
+
+
+
+
+\subsection{Gauss' Law for Magnetic Fields}
+\label{gaussmaglaw}
+
+The second of Maxwell's equations is similar in nature to Gauss' law, except that it involves the flux of the magnetic field of stationary charged particles. First the magnetic induction field, $\vec{B}$, is derived so that the magnetic flux at $S$ may be interpreted whenever charge carriers are stationary. $\vec{B}$ is represented by the magnetic force, $\vec{F}_m$, and the velocity, $\vec{v}$, of instantaneous point charge. 
+
+Consider the total instantaneous force experienced by a point charge in motion in $V$ and let it be denoted by $\vec{F}$. $\vec{F}_m$ is the component of $\vec{F}$ defined relative to $\vec{F}_e$ by fixing $\vec{E}$ for a given velocity. Consider an instantaneous point charge for fixed $\vec{E}$ having velocity $\vec{v}$. Let $\vec{F}_e\circ\vec{v}$ be the component of $\vec{F}_e$ in the direction of $\vec{v}$. Then any remaining forcing is due to $\vec{v}$ and $\vec{F}_e$ in the direction perpendicular to $\vec{v}$ (i.e., in the direction of $\vec{v}\times\vec{F}_e$). The component in the direction of $\vec{F}_e$ in the cross product $\vec{v}\times\vec{F}_e$ is the magnetic field $\vec{B}$ at an instantaneous point. Therefore, by recalling $\vec{F}_e=q_0\vec{E}$ we obtain what is known as the Lorentz force, $$\vec{F}=q_0\vec{E} + q_0(\vec{v}\times\vec{B}),$$ where it follows from renaming that $\vec{F}_m=q_0(\vec{v}\times\vec{B})$. Moreover, $\vec{E}$ and $\vec{B}$ form a basis for the total electromagnetic force experienced by charged particles in motion by construction; due to $\vec{E}$ being fixed relative to the velocity $\vec{v}$. $\vec{F}$ can be thought of as the net force associated with the total electromagnetic field in this basis.
+Now, consider the flux of a magnetic field through a closed surface in the case that charges are fixed (i.e., $\vec{v}=\vec{0}$). We obtain that $\vec{F}_m=\vec{0}$ and so the total force present is strictly due to $\vec{E}$ which implies that $\vec{B}$ must be zero in $V$. Therefore, when computing the magnetic flux we obtain Maxwell's second equation, also known as Gauss' Law for magnetic fields, given by
+\begin{equation}
+\oint_{S}\vec{B}\circ\hat{n}\,da=0.
+\label{mint2.eqn}
+\end{equation}
+\begin{remark}
+The electromagnetic field interaction exhibited by Gauss' electromagnetic laws was derived above for instantaneous point charges. For the two remaining Maxwell equations we consider continuous changes in time, $t$, and derive equations which relate continuous changes in $\vec{E}$ and $\vec{B}$ with respect to continuous changes in time.
+\end{remark}
+\subsection{Maxwell-Faraday Equation}
+\label{maxwell-faraday}
+The third of Maxwell's equations is a generalization of the experimental results from Faraday with the results on conservation of charge from Lenz. First, Faraday's experiment is explained. Second, the results of Faraday's experiment will be stated and the conservation of charge is applied.
+
+Faraday experimented on the steady state current of electrons being passed through a coiled wire. Here, steady state refers to fixed electric and magnetic fields changing with time. Note that a magnet has fixed magnetic field. Faraday passed a magnet axially through the coiled wire and measured the voltage of the wire. The voltage in the wire is defined as the electric flux between any two points in the wire. He observed a voltage occurring in the wire only while the magnet was in motion. Consider the 3-dimensional region containing the coiled wire and moving magnet for some stationary point, $t=t_0$. The combined forces from the fixed magnetic field of the magnet and the fixed electric field of the wire define the total magnetic and electric forces in this region at $t_0$. Recall the Lorentz force and note that a change in the magnetic field with respect to changes in time will change the vector $\vec{v}\times\vec{B}=\vec{F}_m$. By the conservation of charge for fixed electric and magnetic fields, the change in $\vec{F}_m$ induces a change in $\vec{F}_e$. By the derivations in section 3.1, this implies a change in the electric flux which depends only on coordinates of stationary point charges. Faraday concluded that a magnetic field that changes with respect to time induces a change in the electric flux. By conservation of charge we also know that a change in magnetic field opposes the induced change in electric field for the case of steady state electric and magnetic fields. This 
+Recall that $\vec{B}$ depends on the velocity, $\vec{v}$, corresponding to point charges in $V$. Since we are considering finitely many point charges, assume that the velocity at each point in $\vec{B}$ depends continuously on each coordinate $x,y,z$ and time $t$. Recall that we let $C$ be an arbitrary closed path for points in $S$. Consider the case where $C$ is determined by the {\it closed} path of a fixed point charge, restricted by $v$ to this path. Without loss of generality, let $S'$ denote one of two parts of $S$ enclosed by $C$. Furthermore, consider the magnetic flux over the surface $S'$. If either $S$ or $v$ are changing with respect to $t$ then we would expect a change in the magnetic flux with respect to $t$ since it depends on $S$ and $v$. The flux of a changing magnetic field (equivalently the changing magnetic flux) is exactly what is demonstrated by Maxwell's third equation which is derived next.
+
+Introducing $t$ makes $\vec{E}$ and $\vec{B}$ into 4-dimensional vector fields. So, for continuous changes in the vector field $\vec{B}$ with respect to $t$ we must consider the gradient of the vector field. Assume each coordinate direction $x,y,z$ of $\vec{E}$ and $\vec{B}$ (corresponding to a continuum of point charges) is continuously differentiable with respect to $t$. Since each component $x,y,z$ of the force field $\vec{F}$ are functions of $t$ determined with respect to $v$ we have $$\frac{\partial}{\partial }n(t)=\frac{\partial}{\partial t}\frac{\partial}{\partial n}n(t)$$ for $n=x,y,z$ respectively. The gradient, $\vec{\nabla}$ is defined in the appendix and may now be rewritten as $$\vec{\nabla}=\frac{\partial}{\partial t}\bigg(\hat{i}\frac{\partial}{\partial x}+\hat{j}\frac{\partial}{\partial y}+\hat{k}\frac{\partial}{\partial z}\bigg)=\frac{\partial}{\partial t}\vec{\nabla}.$$ We define the velocity of point charges with respect to the coordinate position $(x,y,z)$ as functions of $t$. The velocity vector at any point is given by the instantaneous rate of change in each of $x,y,z$ with respect to $t$ occurring in their respective coordinate axis. Hence, $\vec{\nabla}\times\vec{E}=\vec{v}\times\vec{E}$ and implies that $\vec{\nabla}=\vec{v}$.
+
+Recall the Lorentz force and that in order to construct $\vec{B}$ we required the remaining forcing (not coming from $\vec{E}$) to correspond to $\vec{B}$ and be perpendicular to both $\vec{v}$ and $\vec{E}$. Also note that $\vec{F}_m$ determines $\vec{B}$ and is proportional to forcing in the direction of $$\vec{\nabla}\times\vec{E}\equiv\vec{\nabla}\times\vec{B},$$ where the equivalence represents the renaming of components of $\vec{F}$ which are in $\vec{\nabla}\times\vec{E}$ and do not contribute to components of $$\frac{\vec{v}}{\vert\vec{v}\vert(\vec{E}\circ\vec{v})}$$, which account for all component contributions to $\vec{E}$. Let $B_n$ be partial derivatives with respect to coefficients $n=x(t),y(t),x(t)$ of coordinate directions $\hat{i},\hat{j},\hat{k}$ for $\vec{B}$. It follows that $$\frac{\partial}{\partial t}\vec{B}=\frac{\partial}{\partial t}\vec{B}_x\hat{i}+\frac{\partial}{\partial t}\vec{B}_y\hat{j}+\frac{\partial}{\partial t}\vec{B}_z\hat{k}=\vec{\nabla}\times\vec{B},$$ by the chain rule.
+
+Recall the definition of flux and note that a differential area element, $da$, of $S'$ is equivalent to the gradient at an instantaneous point from which $\hat{n}$ is defined. So, the partial derivative with respect to $t$ may be factored from $\hat{n}$. Therefore, we may compute the flux of $\vec{\nabla}\times\vec{E}$ and factor out the partial derivative to give $$\int_{S'}\big(\vec{\nabla}\times\vec{E}\big)\circ\hat{n}\,da=\int_{S'}\frac{\partial}{\partial t}\big(\vec{B}\circ\hat{n}\big)\,da=\frac{\partial}{\partial t}\int_{S'}\vec{B}\circ\hat{n}\,da.$$ Now we may apply Stokes theorem, as stated in the appendix, and write $$\oint_C\vec{E}\circ d\vec{l}=\frac{\partial}{\partial t}\int_{S'}\vec{B}\circ\hat{n}\,da,$$ where $d\vec{l}=\vec{v(t)}$ by construction of $C$. Note that the circulation is computed over $C$ in the direction of $\vec{v}$ and we already assumed that the magnetic field cannot be in the direction of $\vec{v}$. Therefore, the magnitude of $frac{\partial}{\partial t}$ is negative whenever there is a positive magnetic flux and positive circulation of $\vec{E}$. So, we may be write this as a total derivative with respect to $t$ by the equation
+\begin{equation}
+\oint_{C}\vec{E}\circ\,d\vec{l}=-\frac{d}{dt}\int_{S}\vec{B}\circ\hat{n}\,da.
+\label{mint3.eqn}
+\end{equation}
+
+Equation (\ref{mint3.eqn}) is called Faraday's law and is the third of Maxwell's equatons. Note that the surface $S'$ can be rewritten as $S$ here since the splitting of $S$ by $C$ is arbitrary. I.e., the equation with respect to $S'$ remains true as the surface area of $S\backslash S'$ shrinks to zero (by continuity with respect to $t$), leaving $S'=S$ in the limit. The limiting case is a point charge without a path $C$ having electron spin. Electron spin is responsible for fixed magnetic fields in materials which naturally have such bound electrons and is not discussed further to remain consistent with the topic.
+\subsection{Ampere-Maxwell Law}
+\label{amperemaxwell}
+\begin{equation}
+\oint_{C}\vec{B}\circ d\vec{l}=\mu_{0}(I_{enc}+\varepsilon_{0}\frac{d}{dt}\int_{S}\vec{E}\circ\hat{n}\,da)
+\label{mint4.eqn}
+\end{equation} 
+The fourth of Maxwell's equations is derived in this subsection, but requires many assumptions derived from physical experiments in order to remain within the scope of the project. These are stated and explained first and then applied to the ideas that have been stated in previous subsections involving Maxwell's equations, so that the last of them can be deduced.
+
+$I_{enc}$ is the net current passing through any surface enclosed by the closed contour $C$.
+
+Equation (\ref{mint4.eqn}) is called the Ampere-Maxwell law. It can be summarized by \enquote{an electric current or a changing electric flux through a surface produce[ing] a circulating magnetic field around any path that bounds that surface}(p.84)\cite{Flei}.\\
+
+The constant $\mu_{0}=4\pi \times 10^{-7}$ \si{Vs/Am} is the permeability of free space. It is the magnetic analogue of $\varepsilon_{0}$. \enquote{Magnetic permeability determines a material's response to an applied magnetic field} and \enquote{the permeability of a magnetic material is often expressed by the relative permeability, $\mu_{r}=\mu / \mu_{0}$}(p.87)\cite{Flei}.\\
+
+The enclosed electric current is denoted by $I_{enc}$ and is defined by the net current passing through any surface enclosed by the path $C$. The enclosed current is independent of surface geometry, except that it must coincide with the path. Note that Ampere's law refers to the equation, $\oint_{C}\vec{B}\circ d\vec{l}=\mu_{0}I_{enc}$ and applies only to steady currents where the change in electric flux with respect to time is zero.\\
+
+The most common of three methods used for justifying the existence of the change in electric flux, $\tfrac{d}{dt}\oint_{S}\vec{E}\circ d\vec{l}$, is the inconsistency of Ampere's law while charging a capacitor. The other two methods involve conservation of charge or special relativity \cite{Flei}. One may refer to (p.91-94)\cite{Flei} to derive the change in electric flux using the first method. In that derivation, to account for the permittivity of free space, note that a changing electric flux induces a current on capacitors by the following from (p.93)\cite{Flei},
+
+\begin{equation}
+\int_{S}\vec{E}\circ\hat{n}\,da= \int_{S}\frac{\sigma}{\varepsilon_{0}}\,da=\frac{Q}{A\varepsilon_{0}}\int_{S}\,da=\frac{Q}{\varepsilon_{0}}
+\end{equation}
+
+where $\sigma$ is the area charge density over the surface area $A$, and $Q$ is the current. Hence, in order to account for the induced current by the change in electric flux, it must be multiplied by the permittivity of free space. Moreover, the total current is given by $I_{enc}+Q$ in this formulation.\\
+
+In order to convert (\ref{mint4.eqn}) into differential form, it is necessary to define the electric current density. Doing so will also enable one to write $I_{enc}$ as an integral. The current density, denoted by $/vec{J}$, is \enquote{defined as the vector current flowing through a unit cross-sectional area perpendicular to the direction of the current}(p.105)\cite{Flei}. Formally this can be written as,
+
+\begin{equation}
+\vec{J}=n\,q\,\vec{v_{d}}
+\label{currentdensity.eqn}
+\end{equation}
+
+where $n$ is the number of charge-carriers, $q$ is the charge per carrier, and $\vec{v_{d}}$ is the average drift velocity of charge-carriers. \enquote{If $\vec{J}$ is nonuniform and not perpendiculat to the surface}(p.106)\cite{Flei}, then,
+ 
+\begin{equation}
+I=\int_{S}\vec{J}\circ\hat{n}\,da
+\label{intcurrentdensity.eqn}
+\end{equation}
+
+where $\hat{n}$ is the unit normal vector for $da$. One may justify this equation for current by considering 'small' areas of the surface represented by $da$ of which the vector current may be computed for. Summing the components of vector currents perpendicular to $da$'s ad infinitum results in the integral. Finally, assuming that the circulation of a magnetic field is proportional to the current, we may conclude that (\ref{mint4.eqn}) indeed describes the circulation of the magnetic field by considering both steady state and time dependent sources of current.
+
+\subsection{Maxwell's Equations in Differential Form}
+
+The following are Maxwell's equations in differential form:
+
+\begin{equation}
+\vec{\nabla}\circ\vec{E}=\frac{\rho}{\varepsilon_{0}}
+\label{mdiff1.eqn}
+\end{equation}
+
+\begin{equation}
+\vec{\nabla}\circ\vec{B}=0
+\label{mdiff2.eqn}
+\end{equation}
+
+\begin{equation}
+\vec{\nabla}\times\vec{E}=-\frac{\partial{\vec{B}}}{\partial{t}}
+\label{mdiff3.eqn}
+\end{equation}
+
+\begin{equation}
+\vec{\nabla}\times\vec{B}=\mu_{0}\bigg(\vec{J}+\varepsilon_{0}\frac{\partial{\vec{E}}}{\partial{t}}\bigg)
+\label{mdiff4.eqn}
+\end{equation}
+
+Applying divergence theorem, (\ref{divthm.eqn}), to the left hand side of (\ref{mint1.eqn}) and taking a derivative with respect to a volume of the entire equality gives the charge density proportional to $\varepsilon_{0}$ as in (\ref{mdiff1.eqn}). Since there is a zero on the right hand side of (\ref{mint2.eqn}), then applying (\ref{divthm.eqn}) and differentiating gives (\ref{mdiff2.eqn}) immediately.
+
+Now Stoke's theorem may be applied to (\ref{mint3.eqn}) by rewriting the contour integral as a surface integral. Note that the differentiation with respect to time, $t$, must be made partial and brought inside the integral. Doing so allows the differentiation of the entire relation with respect to the surface, which yields (\ref{mdiff3.eqn}). The same procedure is applied to (\ref{mint4.eqn}) to obtain its differential form (\ref{mdiff4.eqn}), except one must first express the enclosed current by (\ref{intcurrentdensity.eqn}).
+\subsection{Maxwell's Equations in Matter}
+\label{maxwellinmatter}
+\begin{remark}
+The material used for optical fibers is typically glass. Glass is a dielectric material, meaning that one must also consider charges that are bound to the atoms of the material. Note that $\varepsilon_j$ is often referred to as the relative permittivity of a material $j$ and depends entirely on the degree of polarization within a dielectric in response to an electric field. By considering what happens when a dielectric is placed in an external electric field we may understand the effects of bound charges (present from atoms in the material). Positive charges are displaced in the direction following the external field passing through a dielectric and negative charges in the opposite direction. This induces an electric field within the dielectric. The induced field is necessarily smaller in magnitude than the external electric field caused by the displaced negative charges. In other words, negative charges are displaced by opposing positive charges and result in magnitudes of charge with respect to the negative charge direction being smaller relative to the positive charge's magnitude and direction at fixed points in space.
+\end{remark}
+Whenever dealing with electromagnetic fields inside matter, one must consider two things:
+\begin{enumerate}
+\item{The enclosed charge in (\ref{mint1.eqn}) and the current density (\ref{currentdensity.eqn}) includes both {\it bound} and {\it free} charge.}
+\item{The enclosed current (\ref{intcurrentdensity.eqn}) and the displacement current, $\frac{\partial{E}}{\partial{t}}$, includes {\it bound}, {\it free}, and {\it polarization} currents.}
+\end{enumerate}
+Recall that bound and free charges refer to charges that are either bound to atoms (i.e. fixed in space) or not. Bound current refers to electron spin, since this induces a fixed magnetic field around a point charge. The polarization current is induced by the bound charges, which represent point charges that are fixed in space while neglecting rotational effects. Currents which are not bound or polarization currents are free currents. It is necessary to derive versions of (\ref{mdiff1.eqn}) and (\ref{mdiff4.eqn}) which depend only on free charge since it is not generally easy to determine bound charges and currents in a dielectric medium. The following discussion derives the electric displacement field, $\vec{D}$, and magnetic intensity field, $\vec{H}$, which in fact only depend on free charge. These are required for proceeding from chapter 2 of \cite{Belanger} to derive the electromagnetic wave equation in a non-conductive dielectric medium, such as glass.
+
+Now consider Maxwell's equations in a dielectric medium. By the arguments above, one must account for the polarization $\vec{P}$ and magnetization $\vec{M}$ of the material. i.e. $\vec{P}$ and $\vec{M}$ are the fixed electromagnetic fields induced by bound charges and currents. These fields are proportional (with respect to relative permittivity and permeability for the medium) to an applied electromagnetic field. By the definition of an electromagnetic field with respect to Maxwell's equations (\ref{mint1.eqn}) and (\ref{mint2.eqn}), $\vec{D}$ and $\vec{H}$ are given by
+\begin{equation}
+\vec{D}=\varepsilon_{0}\vec{E} + \vec{P}
+\label{dispfield.eqn}
+\end{equation}
+and
+\begin{equation}
+\vec{H}=\mu_{0}\vec{B} + \vec{M}.
+\label{magintensity.eqn}
+\end{equation}
+The relations characterizing these fields with respect to the applied electric and magnetic fields allow one to write (\ref{mdiff1.eqn}) and (\ref{mdiff4.eqn}) with respect to $\vec{D}$ and $\vec{H}$ as,
+\begin{equation}
+\vec{\nabla}\circ\vec{D}=\rho
+\label{mdiff5.eqn}
+\end{equation}
+and
+\begin{equation}
+\vec{\nabla}\times\vec{H}=\vec{J}+\frac{\partial{\vec{D}}}{\partial{t}}=\frac{\partial{\vec{D}}}{\partial{t}}.
+\label{mdiff6.eqn}
+\end{equation}
+Silica fibers are approximately non-conductive unless the intensity of free charge is sufficiently high and non-magnetic (i.e. have approximately no bound charges or bound currents). Therefore, the enclosed current density $\vec{J}$ and magnetism $\vec{M}$ are zero. Isotropic material is one which does not change properties between points. An example of a anisotropic material in this context is a graded index fiber. If the fiber is isotropic (i.e. lossless and homogeneous) then the polarization, $\vec{P}$, is zero. For non-linear effects, one must consider up to third order susceptability to derive the non-linear schrodinger equation.
+\begin{remark}
+The approximation mentioned here refers to either the approximation of the dispersion relation, following \cite{Belanger}, or the approximation of the polarization, $\vec{P}$, following \cite{Agrawal}. These approximations will be discussed in detail after some mathematical theory of waves is presented since these approximations have a direct affect on the dispersive effects for general differential equations. As we will see, the electromagnetic wave equation changes by assuming either of these approximations.
+\end{remark}

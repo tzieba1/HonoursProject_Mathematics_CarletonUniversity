@@ -1,0 +1,3 @@
+\vec{\nabla}\times\vec{A}=[\hat{r}\times\hat{\theta}]\frac{\partial A_{\theta}}{\partial r}+[\hat{r}\times\hat{z}]\frac{\partial A_z}{\partial r}+[\hat{\theta}\times\hat{r}]\frac{1}{r}\bigg(\frac{\partial A_r}{\partial\theta}-A_{\theta}\bigg)\\
++[\hat{\theta}\times\hat{z}]\frac{1}{r}\frac{\partial A_z}{\partial\theta}+[\hat{z}\times\hat{r}]\frac{\partial A_r}{\partial z}
++[\hat{z}\times\hat{\theta}]\frac{\partial A_{\theta}}{\partial z}

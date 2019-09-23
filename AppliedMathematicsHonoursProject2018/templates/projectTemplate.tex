@@ -1,0 +1,789 @@
+%Here is a LaTeX template file suitable for producing a document such a term paper  comprised of sections. For an honours project you would need to have a table of contents as shown below. For a draft report or term paper, if you don't need a table of contents, simply comment out the appropriate lines below. You can adjust the textheight, topmargin, footskip, textwidth and oddsidemargin to the sizes you want. A baselinstretch of 1.0 gives singlespaced text, to get double-spacing use 1.5 or 2.0. The packages {graphicx} and {graphics} allow you to include graphs, which will be automatically numbers as Figures 1, 2 etc. The packages {amssymb} and {amsmath} allow you to include certain additional mathematical symbols.
+%This is just a rough template. A quick search online can give you more tips. I have included a few equations to give you an idea of how to use the math mode. I've also included a list of references at the end to illustrate how to produce references.
+%Note that comments are produced by putting a % at the beginning of a line. To start a new line use // at the end of your line. To start a new paragraph, skip one line.
+%I recommnd that you use a text editor such as emacs or xemacs to edit your latex file, so that you will have syntax highlighting. Emacs/xemacs is available on all linux systems and you can get a version for Windows free by searching on the Internet. 
+%
+%To process your document use the following commands at the linux command line:
+%                  latex template1
+%to produce a DVI file called template.dvi which you can view using the command
+%                  xdvi template1 &
+%To print the dvi file, type
+%                  dvips -Pyourprintername template1
+%If you want to convert the dvi file to PDF format, type
+%                  dvips -o template1.ps template1
+%which will create a PS file called template1.ps. And then type
+%                  ps2pdf template1.ps
+%which will create a PDF file called template1.pdf, which you can view with the acrobat reader. 
+%You can also use
+%                  pdflatex template1
+% to convert your latex file template1.tex directly into PDF format without producing the DVI and PS files, but that doesn't work if you have graphs.
+%If you're using a version of latex for Windows you can usually run these commands from the pulldown menu of your editor. You need to install a DVI viewer to view the DVI file and  Ghostview to view the PS files. These can be found in various places online. You may be able to process the latex file and turn it into a PDF file directly.
+
+
+\documentclass[12pt]{article}
+\usepackage{graphicx}  
+\usepackage{graphics}
+%\setcounter{secnumdepth}{1}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{siunitx} 
+\usepackage [english]{babel}
+\usepackage [autostyle, english = american]{csquotes}
+\usepackage{amsthm}
+\usepackage[strict]{changepage}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem*{remark}{Remark}
+\numberwithin{equation}{section}
+
+%Adjust these numbers to change the size of your margins
+\setlength{\textheight}{210mm}
+\setlength{\topmargin}{-5mm}
+%\setlength{\footskip}{-5mm}
+\setlength{\textwidth}{145mm}
+\setlength{\oddsidemargin}{15mm}
+
+%\renewcommand{\baselinestretch}{1.5} %%%% Comment this out to produce a single-spaced document. For double-spacing use 1.5 or 2.0.
+
+\begin{document}
+
+\begin{titlepage}
+
+\large
+
+\begin{center}
+{\LARGE Linear \& Non-Linear Dispersive Waves in Optical Fibers}
+
+\vspace{20mm}
+
+{\Large Tommy Zieba}
+
+\vspace{20mm}
+
+{\large Date, and any other information}
+\end{center}
+
+
+
+\end{titlepage}
+
+
+
+\pagebreak
+\pagenumbering{roman}
+
+%\renewcommand{\baselinestretch}{1.5} 
+\tableofcontents
+\addtocontents{toc}{\contentsline {section}{\numberline {}Abstract}{ii}}
+%%\addtocontents{toc}{\contentsline {section}{\numberline {}Acknowledgements}{iv}}
+%%\addtocontents{toc}{\contentsline {section}{\numberline {}List of figures}{vii}}
+%%\addtocontents{toc}{\contentsline {section}{\numberline {}List of symbols}{xii}}
+
+%%\listoffigures
+\newpage
+
+
+\begin{center}
+
+{\Large \bf Abstract}
+\end{center}
+
+abstract
+
+\pagebreak
+
+\section{Introduction}
+
+\subsection{a subsection}
+\pagenumbering{arabic}
+
+
+Introduction
+
+\section{First Section}
+\subsection{Brief Description of Topic}
+
+The physical concept of interest for this project will be {\it dispersion}. An optical fiber has specific physical properties that can be described with {\it Maxwell's equations} and the theory of {\it waveguides} may be used to interpret these equations under certain assumptions including linear dispersion. Within the theory of waveguides are the concepts of {\it total internal reflection} and the {\it Goss-Hanchen shift} which characterize the modal dispersion in a linear, non-dispersive medium. The other source of dispersive effects is the dependence of the refractive index on the frequency (which extends to amplitude dependence). This corresponds to the assumption of a 'fully' dispersive medium having non-linear dispersive effects. Dispersion within an optical fiber are interpreted with partial differential equations (PDEs). Other general points of discussion for this report are:
+\begin{enumerate}
+\item The theory of Maxwell's equations used to arrive at the equations of interest, which are analyzed in other sections.
+\item Some theory of hyperbolic waves will be discussed and the concept of dispersive waves will be introduced and discussed.
+\item The model used to interpret linear dispersive effects in step-index and graded-index fibers will be derive. The derivation follows a classical method based on the theory of cylindrical waveguides. 
+\item The TE, TM, Hybrid, and some of LP dispersion modes will be discussed for this derivation. The solutions involved in these guided modes and their relationship with dispersive effects need to be discussed. 
+\item For non-linear dispersive effects, we require the {\it non-linear Schrodinger equation} which is derived using Maxwell's equations. 
+\item Modulation theory is applied to the non-linear schrodinger equation in order to generalize the dispersion relation and other relations relavent to the study of non-linear effects in optical fibers. 
+\item Such non-linear dispersive effects include the 'balance-like' phenomenon between the group velocity and wave number distribution which produces soliton pulses as possible solutions.
+\end{enumerate}
+
+
+\section{Maxwell's Equations}
+
+The following four integral equations are known as Maxwell's equations:
+
+\begin{equation}
+\oint_{S}\vec{E}\circ\hat{n}\,da=\frac{q_{in}}{\varepsilon_{0}}
+\label{mint1.eqn}
+\end{equation}
+\begin{equation}
+\oint_{S}\vec{B}\circ\hat{n}\,da=0
+\label{mint2.eqn}
+\end{equation}
+\begin{equation}
+\oint_{C}\vec{E}\circ\,d\vec{l}=-\frac{d}{dt}\int_{S}\vec{B}\circ\hat{n}\,da
+\label{mint3.eqn}
+\end{equation}
+\begin{equation}
+\oint_{C}\vec{B}\circ d\vec{l}=\mu_{0}(I_{enc}+\varepsilon_{0}\frac{d}{dt}\int_{S}\vec{E}\circ\hat{n}\,da)
+\label{mint4.eqn}
+\end{equation}
+\newline
+
+
+Maxwell's differential equations are required for discussing optical waveguide theory refered to in \cite{Okamoto}. This section mainly follows \cite{Flei} (and other references where required) with the motivation of deriving Maxwell's equations. These equations are derived in integral form, but may be written in differential form by using {\it Divergence theorem} and {\it Stoke's theorem}.\newline
+
+\subsection{Gauss's Law for Electric Flux}
+
+Equation (\ref{mint1.eqn}) is known as Gauss's law for electric fields. Equation (\ref{mint1.eqn}) may be summarized by the following: \enquote{electric charge produces an electric field and the flux of that field passing through any closed surface is proportional to the total charge contained in that surface}(p.1)\cite{Flei}. The electric field is defined by, \enquote{the electrical force per unit charge exerted on a charged object}...\enquote{thus the electric field may be defined by the relation,
+
+\begin{equation}
+\vec{E}=\frac{\vec{F}_{e}}{q_{0}}
+\end{equation}
+
+where $\vec{E}=$ electrical force on a small charge $q_{0}$}(p.3)\cite{Flei}. Equation (\ref{mint1.eqn}) also defines a vector field in which, \enquote{field lines point in the direction of the field at each point in space}(p.3)\cite{Flei}, and $\hat{n}$ is the unit normal vector that is perpendicular to a surface $S$ which implies that $\vec{E}\circ\hat{n}$ is the component of the electrical field perpendicular to that surface. \\
+
+The flux of the electric field is exactly what is defined by the left hand side of (\ref{mint1.eqn}), but for surfaces which are not closed. It is the magnitude of the electrical field passing perpendicularly through such a surface. The electrical flux is also denoted by $\Phi_{E}$ and is equivalent to the number of field lines penetrating the surface. Such densities are referred to as charge densities. For a closed surface, \enquote{the number of field lines penetrating that surface must be proportional to the total charge enclosed by that surface}(p.15)\cite{Flei}. Thus, the electrical flux described by the right hand side of (\ref{mint1.eqn}) can be interpreted using the density of field lines passing through the integral surface, called charge density. Assuming charge density is constant with units \si{C/m^3}, the enclosed charge is defined as:
+
+\begin{equation}
+q_{enc}=\rho V=\int_{V}\rho\,dV
+\end{equation}
+
+The constant of proportionality which describes the electrical flux is the remaining term in (\ref{mint1.eqn}) denoted by $\varepsilon_{0}$ and is referred to as the permittivity of free space.\enquote{The permittivity of a material determines its response to an applied electrical field}(p.18)\cite{Flei}. The subscript, $0$, refers to the permittivity relative to vacuum. For optical fibers, the material in question is typically glass.
+%(can mention doping here)
+Glass is a dielectric material, meaning that one must also consider \enquote{charges that are bound to the atoms of the material [and]}, ..., \enquote{the effect of bound charges can be understood by considering what happens when a dielectric is placed in an external electric field}(p.18)\cite{Flei}. Positive charges are displaced in the direction following the external field passing through a dielectric and negative charges in the opposite direction. This induces an electric field within the dielectric. The induced field is necessarily smaller in magnitude than the external electric field caused by the displaced negative charges. In other words, displaced negative charges produce a smaller net charge enclosed within dielectric material.\enquote{The permittivity of a dielectric, $\varepsilon$, is often expressed as the relative permittivity}(p.19)\cite{Flei},
+
+\begin{equation}
+\varepsilon_{r}=\frac{\varepsilon}{\varepsilon_{0}}
+\label{relperm.eqn}
+\end{equation}
+
+where $\varepsilon_{0}\!=\! 8.\,8541878176\!\times\!10^{-12}$ \si{C/Vm}. Note that permittivity is obtained experimentally.
+
+\subsection{Gauss's Law for Magnetic Fields}
+
+Equation (\ref{mint2.eqn}) is known as Gauss's law for magnetic fields and will be derived in this section. Paraphrasing from p.43 of \cite{Flei}: Electrical and magnetic fields differ fundamentally because negative and positive electrical charges can be separated, while magnetic poles only exist as inseparable positive and negative pairs.\\
+
+The magnetic field $\vec{B}$ (a.k.a. magentic induction) is defined by the force experienced by a moving charged particle. Following chapter 8 of \cite{Reitz}: \\
+
+\enquote{If both an electric field and a magnetic field are present, the total force on a moving charge is $\vec{F_{e}}+\vec{F_{m}}$
+\begin{equation}
+\vec{F}=q\vec{E} + q(\vec{v}\times\vec{B})=q(\vec{E} + \vec{v}\times\vec{B})
+\label{lorentz}
+\end{equation}
+
+This force is known as the Lorentz force}(p.191). \\
+
+In (\ref{lorentz}), subscripts denote the electric and magnetic force respectively, $q$ is the charge, and $\vec{v}\times\vec{B}$ is the cross-product of a unit vector in the direction of motion with the magnetic induction. The magnetic induction, $\vec{B}$, is derived from the definition of the magnetic force experienced by a pair of charged particles with individual velocities. Note that charged particles only experience magnetic force in the component of its velocity that is in the direction of the magnetic field. The justification for (\ref{mint2.eqn}) in \cite{Flei} is that, \enquote{the magnetic force is perpendicular to the velocity at every instant, the component of the force in the direction of the displacement is zero, and the work done by the magnetic field is therefore always zero}(p.45)\cite{Flei}. The left hand side of (\ref{mint2.eqn}) represents the change in magnetic flux through a closed surface $S$. But, the right hand side is zero only for closed surfaces, which is discussed further when deriving (\ref{mint3.eqn}). \\
+
+In order to discuss (\ref{mint3.eqn}) and (\ref{mint4.eqn}),  it is important to introduce the divergence theorem and Stoke's theorem first because the definitions required to formulate these two theorems appear in these equations. These two theorems will also provide a way to write (\ref{mint1.eqn})-(\ref{mint4.eqn}) in differential form.
+
+\subsection{Divergence Theorem \& Stoke's Theorem}
+
+\begin{definition} The \textbf{gradient} is a vector valued differential operator which generalizes the derivative for multivariate functions. It is defined by,
+
+\begin{equation}
+\vec{\nabla}\equiv\vec{i}\frac{\partial}{\partial x}+\vec{j}\frac{\partial}{\partial y}+\vec{k}\frac{\partial}{\partial z}
+\label{grad.eqn}
+\end{equation}
+\end{definition}
+
+
+\begin{definition}The \textbf{divergence} of a field $\vec{A}$ is defined by the projection of the field onto the gradient for each infinitesimal point in space. This is equivalent to the dot product of the gradient with $\vec{A}$ given by,
+
+\begin{equation}
+div(\vec{A})=\vec{\nabla}\circ\vec{A}=\lim_{\Delta V\to 0}\frac{1}{\Delta V}\oint_{S}\vec{A}\circ\hat{n}\,da
+\label{diver.eqn}
+\end{equation}
+\end{definition}
+
+\begin{theorem}\textbf{(Divergence Theorem)}\enquote{The flux of a vector field through a closed surface $S$ is equal to the integral of the divergence of the field over a volume $V$ for which $S$ is a boundary}(p.114)\cite{Flei}. This may be written for some field $\vec{A}$ as,
+\label{divthm}
+
+\begin{equation}
+\oint_{S}\vec{A}\circ\hat{n}\,da = \int_{V}(\vec{\nabla}\circ\vec{A})\,dV
+\label{divthm.eqn}
+\end{equation}
+\end{theorem}
+
+Next, the curl and circulation of a vector field is defined so that Stoke's theorem may be interpreted.
+
+\begin{definition}The \textbf{curl} of a vector field $\vec{A}$ is a \enquote{measure of the vector field's tendency to circulate about a point}(p.75)\cite{Flei}. It is defined,
+
+\begin{equation}
+curl(\vec{A})=\vec{\nabla}\times\vec{A}=\lim_{\Delta S\to 0}\frac{1}{\Delta S}\oint_{C}\vec{A}\circ\,d\vec{l}
+\label{curl.eqn}
+\end{equation}
+\end{definition}
+
+\begin{definition} The \textbf{circulation} of a vector field $\vec{A}$ is the magnitude of cumulative force of the vector field along the direction and length of a closed path $C$. Formally this is may be written as,
+
+\begin{equation}
+Circulation(\vec{A})=\oint_{C}\vec{A}\circ d\vec{l}
+\label{circulation.eqn}
+\end{equation}
+\end{definition}
+
+
+\begin{theorem} \textbf{(Stoke's Theorem)} \enquote{The circulation of a vector field over a closed path $C$ is equal to the integral of the normal component of the curl of that field over a surface $S$ for which $C$ is boundary}(p.116)\cite{Flei}. This may be expressed by the equation,
+
+\begin{equation}
+\oint_{C}\vec{A}\circ\,d\vec{l}=\int_{S}(\vec{\nabla}\times\vec{A})\circ\hat{n}\,da
+\label{stokes.eqn}
+\end{equation}
+\end{theorem}
+
+\begin{remark} 
+The derivations for the gradient, divergence, and curl and the proofs for the Divergence and Stoke's theorems can be found in chapter 1 of \cite{Reitz}.
+\end{remark}
+
+\subsection{Faraday's Law}
+Equation (\ref{mint3.eqn}) is called Faraday's law. The equation may be summarized by a \enquote{changing magnetic flux through a surface [which] induces an emf [electromotive force] in any boundary path of that surface and [as a consequence of changing magnetic flux,] a changing magnetic field induces a circulating electric field}(p.59)\cite{Flei}.\\
+
+Note that the left hand side of (\ref{mint3.eqn}) defines the emf and $\vec{E}$ is an induced electric field in this context which only differs from a static electrical field by its structure. In other words, \enquote{charge-based electric fields have field lines that originate on positive charge and terminate on negative charge (and thus have zero divergence at those points), while induced electric fields produced by changing magnetic fields have field lines that loop back on themselves}...\enquote{(and thus have zero divergence)}(p.62)\cite{Flei}. The emf represents the cumulative magnitude of force of the electrical field applied in the direction of the closed path $C$, over its length $l$. The emf may also be interpreted by the circulation of the electrical field as it is defined. A typical example of this is the voltage along the path of the wire.\\
+
+On the other hand, the right hand side (ignoring the minus sign) of (\ref{mint3.eqn}) represents the rate of change in flux with respect to time. Note that the magnetic flux through a non-closed surface is not necessarily zero as it is for (\ref{mint2.eqn}). By definition of the static magnetic field described by (\ref{mint2.eqn}), the field lines form closed loops and so a closed surface has equal amounts of magnetic force entering and exiting the surface producing zero net force enclosed by the surface. The magnitude and direction of the magnetic field $\vec{B}$ or the spatial parameters of the surface $S$ may change with respect to time. Hence, the rate of change in flux for a surface may be non-zero since parameters influencing the change in magnetic flux could be changing with the passage of time for an arbitrary surface. Also note that the surface $S$ must contain the path $C$ for this to make sense.\\
+
+Equation (\ref{mint2.eqn}) implies that the magnetic field is necessarily static at any given moment within {\it any} closed surface and so an emf necessarily opposes the changing magnetic flux, keeping the magnetic field static. Moreover, this accounts for the minus sign in (\ref{mint3.eqn}) as the opposition of the emf against the changing magnetic flux.
+
+\subsection{Ampere-Maxwell Law}
+
+Equation (\ref{mint4.eqn}) is called the Ampere-Maxwell law. It can be summarized by \enquote{an electric current or a changing electric flux through a surface produce[ing] a circulating magnetic field around any path that bounds that surface}(p.84)\cite{Flei}.\\
+
+The constant $\mu_{0}=4\pi \times 10^{-7}$ \si{Vs/Am} is the permeability of free space. It is the magnetic analogue of $\varepsilon_{0}$. \enquote{Magnetic permeability determines a material's response to an applied magnetic field} and \enquote{the permeability of a magnetic material is often expressed by the relative permeability, $\mu_{r}=\mu / \mu_{0}$}(p.87)\cite{Flei}.\\
+
+The enclosed electric current is denoted by $I_{enc}$ and is defined by the net current passing through any surface enclosed by the path $C$. The enclosed current is independent of surface geometry, except that it must coincide with the path. Note that Ampere's law refers to the equation, $\oint_{C}\vec{B}\circ d\vec{l}=\mu_{0}I_{enc}$ and applies only to steady currents where the change in electric flux with respect to time is zero.\\
+
+The most common of three methods used for justifying the existence of the change in electric flux, $\tfrac{d}{dt}\oint_{S}\vec{E}\circ d\vec{l}$, is the inconsistency of Ampere's law while charging a capacitor. The other two methods involve conservation of charge or special relativity \cite{Flei}. One may refer to (p.91-94)\cite{Flei} to derive the change in electric flux using the first method. In that derivation, to account for the permittivity of free space, note that a changing electric flux induces a current on capacitors by the following from (p.93)\cite{Flei},
+
+\begin{equation}
+\int_{S}\vec{E}\circ\hat{n}\,da= \int_{S}\frac{\sigma}{\varepsilon_{0}}\,da=\frac{Q}{A\varepsilon_{0}}\int_{S}\,da=\frac{Q}{\varepsilon_{0}}
+\end{equation}
+
+where $\sigma$ is the area charge density over the surface area $A$, and $Q$ is the current. Hence, in order to account for the induced current by the change in electric flux, it must be multiplied by the permittivity of free space. Moreover, the total current is given by $I_{enc}+Q$ in this formulation.\\
+
+In order to convert (\ref{mint4.eqn}) into differential form, it is necessary to define the electric current density. Doing so will also enable one to write $I_{enc}$ as an integral. The current density, denoted by $/vec{J}$, is \enquote{defined as the vector current flowing through a unit cross-sectional area perpendicular to the direction of the current}(p.105)\cite{Flei}. Formally this can be written as,
+
+\begin{equation}
+\vec{J}=n\,q\,\vec{v_{d}}
+\label{currentdensity.eqn}
+\end{equation}
+
+where $n$ is the number of charge-carriers, $q$ is the charge per carrier, and $\vec{v_{d}}$ is the average drift velocity of charge-carriers. \enquote{If $\vec{J}$ is nonuniform and not perpendiculat to the surface}(p.106)\cite{Flei}, then,
+ 
+\begin{equation}
+I=\int_{S}\vec{J}\circ\hat{n}\,da
+\label{intcurrentdensity.eqn}
+\end{equation}
+
+where $\hat{n}$ is the unit normal vector for $da$. One may justify this equation for current by considering 'small' areas of the surface represented by $da$ of which the vector current may be computed for. Summing the components of vector currents perpendicular to $da$'s ad infinitum results in the integral. Finally, assuming that the circulation of a magnetic field is proportional to the current, we may conclude that (\ref{mint4.eqn}) indeed describes the circulation of the magnetic field by considering both steady state and time dependent sources of current.
+
+\subsection{Maxwell's Equations in Differential Form}
+
+The following are Maxwell's equations in differential form:
+
+\begin{equation}
+\vec{\nabla}\circ\vec{E}=\frac{\rho}{\varepsilon_{0}}
+\label{mdiff1.eqn}
+\end{equation}
+
+\begin{equation}
+\vec{\nabla}\circ\vec{B}=0
+\label{mdiff2.eqn}
+\end{equation}
+
+\begin{equation}
+\vec{\nabla}\times\vec{E}=-\frac{\partial{\vec{B}}}{\partial{t}}
+\label{mdiff3.eqn}
+\end{equation}
+
+\begin{equation}
+\vec{\nabla}\times\vec{B}=\mu_{0}\bigg(\vec{J}+\varepsilon_{0}\frac{\partial{\vec{E}}}{\partial{t}}\bigg)
+\label{mdiff4.eqn}
+\end{equation}
+
+Applying divergence theorem,(\ref{divthm.eqn}), to the left hand side of (\ref{mint1.eqn}) and taking a derivative with respect to a volume of the entire equality gives the charge volume density, proportional to the constant $\varepsilon_{0}$. This also gives (\ref{mdiff1.eqn}). Since there is a zero on the right hand side of (\ref{mint2.eqn}) then applying (\ref{divthm.eqn}) and differentiating gives (\ref{mdiff2.eqn}) immediately.\\
+
+Now Stoke's theorem may be applied to (\ref{mint3.eqn}) by rewriting the contour integral as a surface integral. Note that the differentiation with respect to time can be made partial and brought inside the integral. Doing so allows the differentiation of the entire relation with respect to the surface, which yields (\ref{mdiff3.eqn}). The same procedure is applied to (\ref{mint4.eqn}) to obtain its differential form (\ref{mdiff4.eqn}), except one must first express the enclosed current by (\ref{intcurrentdensity.eqn}).
+
+\subsection{Maxwell's Equations in Matter}
+
+Whenever dealing with fields inside matter, one must consider two things:
+
+\begin{enumerate}
+\item{The enclosed charge in (\ref{mint1.eqn}) and the current density (\ref{currentdensity.eqn}) includes both {\it bound} and {\it free} charge.}
+\item{The enclosed current (\ref{intcurrentdensity.eqn}) and the displacement current, $\frac{\partial{E}}{\partial{t}}$, includes {\it bound}, {\it free}, and {\it polarization} currents.}
+\end{enumerate}
+
+Therefore, it is necessary to derive versions of (\ref{mdiff1.eqn}) and (\ref{mdiff4.eqn}) which depend only on free charge since it is not apparently easy to determine bound charges and currents in a general dielectric medium \cite{Flei}.
+
+The following discussion is based on (p.10-14)\cite{Belanger} in order to derive the wave equation for the dielectric medium used in optical fibers. When considering Maxwell's equations in a dielectric medium, one must account for the polarization and magnetization of the material. The resulting electric (polarization) and magnetic (magnetization) fields are proportional, by the respective constants of permittivity and permeability, to applied electric and magnetic fields. The superposition of proportioned applied electric and magnetic fields with these medium-specific field quantities is known as the electric displacement field and the magnetic intensity field.\\
+i.e.
+\begin{equation}
+\vec{D}=\varepsilon_{0}\vec{E} + \vec{P}
+\label{dispfield.eqn}
+\end{equation}
+
+\begin{equation}
+\vec{H}=\mu_{0}\vec{B} + \vec{M}=\mu_{0}\vec{B}
+\label{magintensity.eqn}
+\end{equation}
+
+The relations characterizing these fields with respect to the applied electric and magnetic fields allow one to write (\ref{mdiff1.eqn}) and (\ref{mdiff4.eqn}) with respect to $\vec{D}$ and $\vec{H}$ as,
+
+\begin{equation}
+\vec{\nabla}\circ\vec{D}=\rho
+\label{mdiff5.eqn}
+\end{equation}
+
+\begin{equation}
+\vec{\nabla}\times\vec{H}=\vec{J}+\frac{\partial{\vec{D}}}{\partial{t}}=\frac{\partial{\vec{D}}}{\partial{t}}
+\label{mdiff6.eqn}
+\end{equation}
+
+
+Silica fibers are non-conductive and non-magnetic. Therefore, the enclosed current density $\vec{J}$ and magnetism $\vec{M}$ are zero. Isotropic material is one which does not change properties between points. An example of a anisotropic material in this context is a graded index fiber. If the fiber is isotropic (i.e. lossless and homogeneous) then the polarization, $\vec{P}$, is zero. For non-linear effects, one must consider up to third order susceptability to derive the non-linear schrodinger equation.
+
+\section{Cylindrical Coordinates}
+
+To discuss the solutions to the dispersion relation in the context of waveguide theory from \cite{Okamoto}, we must assume the propagation of a uniform plane wave, having linear dispersion. Otherwise, if the source produces a signal which propagates a non-uniform plane wave then we would expect non-linear dispersive effects due to the amplitude dependence. In any case we should interpret solutions in cylindrical coordinates based on the structure of silica fiber waveguides. Also note that the direction of propagation, $\hat{z}$, is fixed for plane wave solutions of the electromagnetic field along the length of the fiber. This section gives a derivation of the curl of a vector field in cylindrical coordinates to be used in the following sections for interpreting and applying Maxwell's equations.\\
+
+Begin by defining $x=r\, cos\theta$, $y=r\, sin\theta$, $z=z$. Then it follows that, $x^{2}+y^{2}=r^{2}(cos^{2}\theta + sin^{2}\theta)=r^{2}$ and $y/x=tan\theta$, which implies $\sqrt{x^{2}+y^{2}} =r$ and $tan^{-1}(y/x)=\theta$. A cartesian vector of unital magnitude $\vec{u}$ is given in cylindrical coordinates by,
+
+\begin{equation}
+\vec{u}= \left(\begin{array}{c}r\, cos\theta\\ r\, sin\theta\\ z \end{array}\right)
+\end{equation}
+
+and so the cylindrical unit vectors may be derived for each direction $\hat{r}$, $\hat{\theta}$, $\hat{z}$ by applying the operation,
+
+\begin{equation}
+\hat{v}=\frac{\frac{d\vec{u}}{dv}}{{\vert{\frac{d\vec{u}}{dv}\vert}}}
+\end{equation}
+
+to $v=r,\theta ,z$ respectively. Then,
+
+\begin{itemize}
+\item $\hat{r}=\frac{\frac{d\vec{u}}{dr}}{\vert{\frac{d\vec{u}}{dr}}\vert}=\frac{1}{\sqrt{cos^{2}\theta+sin^{2}\theta}}\left(\begin{array}{c}cos\theta\\sin\theta\\0\end{array}\right)=\left(\begin{array}{c}cos\theta\\sin\theta\\0\end{array}\right)$
+\item $\hat{\theta}=\frac{\frac{d\vec{u}}{d\theta}}{\vert{\frac{d\vec{u}}{d\theta}}\vert}=\frac{1}{r\sqrt{cos^{2}\theta+sin^{2}\theta}}\left(\begin{array}{c}-rsin\theta\\rcos\theta\\0\end{array}\right)=\left(\begin{array}{c}-sin\theta\\cos\theta\\0\end{array}\right)$
+\item $\hat{z}=\frac{\frac{d\vec{u}}{dz}}{\vert{\frac{d\vec{u}}{dz}}\vert}=\frac{1}{\sqrt{1^{2}}}\left(\begin{array}{c}0\\0\\1\end{array}\right)=\left(\begin{array}{c}0\\0\\1\end{array}\right)$
+\end{itemize}
+
+are the unit vectors associated with cylindrical coordinates. In order to define the curl in cylindrical coordinates, we first need to define the operation of the gradient in cylindrical coordinates. By definition, the gradient must satisfy
+
+\begin{equation}
+du=\vec{\nabla}u\circ d\vec{r}
+\label{gradient2.eqn}
+\end{equation} 
+
+where $u(r,\theta ,z)$ is a static scalar field and the operation, \enquote{$d$}, is the total derivative and $\vec{r}$ is a cartesian vector. By direct computation it follows that:
+
+\begin{equation}
+du=\frac{\partial u}{\partial r}dr+\frac{\partial u}{\partial \theta}d\theta+\frac{\partial u}{\partial z}dz
+\label{cyl1.eqn}
+\end{equation}
+
+\begin{equation}
+\vec{\nabla}u\circ d\vec{r}=(\vec{\nabla}u)_{r}(d\vec{r})_{r}+(\vec{\nabla}u)_{\theta}(d\vec{r})_{\theta}+(\vec{\nabla}u)_{z}(d\vec{r})_{z}
+\label{cyl2.eqn}
+\end{equation}
+
+\begin{equation}
+d\vec{r}=d[r\hat{r}+z\hat{z}]=\hat{r}\,dr+r\,d\hat{r}+\hat{z}\,dz+z\,d\hat{z}
+\label{cyl3.eqn}
+\end{equation}
+
+\begin{equation}
+\arraycolsep=20pt\def\arraystretch{2.2}
+\begin{array}{ccc}\frac{\partial\hat{r}}{\partial r}=\vec{0} & \frac{\partial\hat{r}}{\partial\theta}=\hat{\theta} & \frac{\partial\hat{r}}{\partial z}=\vec{0}\\ \frac{\partial\hat{\theta}}{\partial r}=\vec{0} & \frac{\partial\hat{\theta}}{\partial\theta}=-\hat{r} & \frac{\partial\hat{\theta}}{\partial z}=\vec{0}\\ \frac{\partial\hat{z}}{\partial r}=\vec{0} & \frac{\partial\hat{z}}{\partial\theta}=\vec{0} & \frac{\partial\hat{z}}{\partial z}=\vec{0}\end{array}
+\label{cyl4.eqn}
+\end{equation}
+
+The relation, $\vec{r}=r\hat{r}+z\hat{z}$, in (\ref{cyl3.eqn}) is obtained by observing that any cartesian vector can be represented in this way for some $r$ and $z$ that are real constants. Applying (\ref{cyl4.eqn}) and (\ref{cyl1.eqn}) to (\ref{cyl3.eqn}) gives, $d\vec{r}=\hat{r}dr+\hat{\theta}r\,d\theta+\hat{z}dz$. Applying (\ref{cyl3.eqn}), in its new terms, to (\ref{cyl2.eqn}) gives the relation,
+
+\begin{equation}
+\vec{\nabla}u\circ d\vec{r}=(\vec{\nabla}u)_{r}(dr)+(\vec{\nabla}u)_{\theta}(r\,d\theta)+(\vec{\nabla}u)_{z}(dz)
+\end{equation}
+
+which is applied with (\ref{cyl1.eqn}) to the original assumption, (\ref{gradient2.eqn}), to obtain
+
+\begin{equation}
+\vec{\nabla}\equiv \hat{r}\frac{\partial}{\partial r} + \hat{\theta}\frac{1}{r}\frac{\partial}{\partial\theta}+\hat{z}\frac{\partial}{\partial z}
+\end{equation}
+
+after equating the differential components of $du$ with those of $\vec{\nabla}u\circ d\vec{r}$. Now we may define the curl in general by taking the cross product of $\vec{\nabla}$ with a vector field $\vec{A}=\vec{A}_{r}\hat{r}+\vec{A}_{\theta}\hat{\theta}+\vec{A}_{z}\hat{z}$. The curl in cylindrical coordinates is derived as follows:
+\begin{adjustwidth*}{-44mm}{-25mm}
+
+\begin{align}
+\vec{\nabla}\times\vec{A} &= \bigg(\hat{r}\frac{\partial}{\partial r}+\hat{\theta}\frac{1}{r}\frac{\partial}{\partial\theta}+\hat{z}\frac{\partial}{\partial z}\bigg)\times\vec{A}\nonumber 
+\\&= \bigg(\hat{r}\frac{\partial}{\partial r}\times\vec{A}\bigg)+\bigg(\hat{\theta}\frac{1}{r}\frac{\partial}{\partial\theta}\times\vec{A}\bigg)+\bigg(\hat{z}\frac{\partial}{\partial z}\times\vec{A}\bigg)\nonumber 
+\\&= 
+\bigg(\hat{r}\times\frac{\partial\vec{A}}{\partial r}\bigg)+\bigg(\hat{\theta}\frac{1}{r}\times\frac{\partial\vec{A}}{\partial\theta}\bigg)+\bigg(\hat{z}\times\frac{\partial\vec{A}}{\partial z}\bigg)\nonumber 
+\\&= 
+\hat{r}\times\frac{\partial (A_r\hat{r}+A_{\theta}\hat{\theta}+A_z\hat{z})}{\partial r}+\hat{\theta}\frac{1}{r}\times\frac{\partial (A_r\hat{r}+A_{\theta}\hat{\theta}+A_z\hat{z})}{\partial\theta}+\hat{z}\times\frac{\partial (A_r\hat{r}+A_{\theta}\hat{\theta}+A_z\hat{z})}{\partial z}\nonumber 
+\\&= 
+[\hat{r}\times\hat{\theta}]\frac{\partial A_{\theta}}{\partial r}+[\hat{r}\times\hat{z}]\frac{\partial A_z}{\partial r}+[\hat{\theta}\times\hat{r}]\frac{1}{r}\bigg(\frac{\partial A_r}{\partial\theta}-A_{\theta}\bigg)+[\hat{\theta}\times\hat{z}]\frac{1}{r}\frac{\partial A_z}{\partial\theta}+[\hat{z}\times\hat{r}]\frac{\partial A_r}{\partial z}+[\hat{z}\times\hat{\theta}]\frac{\partial A_{\theta}}{\partial z}\label{cylcurl1.eqn} 
+\\&= 
+\hat{r}\bigg(\frac{1}{r}\frac{\partial A_z}{\partial\theta}-\frac{\partial A_{\theta}}{\partial z}\bigg)+\hat{\theta}\bigg(\frac{\partial A_r}{\partial z}-\frac{\partial A_z}{\partial r}\bigg)+\hat{z}\bigg(\frac{1}{r}\frac{\partial A_r}{\partial\theta}+\frac{A_{\theta}}{r}-\frac{\partial A_{\theta}}{\partial r}\bigg)\label{cylcurl.eqn}
+\end{align}
+\end{adjustwidth*}
+
+\vspace{8mm}In the derivation above, (\ref{cylcurl1.eqn}) is obtained by expanding the partial derivative in the previous step and applying (\ref{cyl4.eqn}). Equation (\ref{cylcurl.eqn}) is the curl given in cylindrical coordinates and follows from (\ref{cylcurl1.eqn}) by writing the cross products of unit vectors in terms of single unit vectors and collecting their coefficients.
+
+\section{Guided Modes in Cylindrical Waveguides}
+
+In a lossless and homogeneous dielectric medium, Maxwell's equations (\ref{mdiff6.eqn}) and (\ref{mdiff3.eqn}) reduce to,
+
+\begin{equation}
+\vec{\nabla}\times\vec{e}(t)=-\mu\frac{\partial\vec{h}}{\partial t}
+\label{maxwellwave_e.eqn}
+\end{equation}
+and
+\begin{equation}
+\vec{\nabla}\times\vec{h}(t)=\varepsilon\frac{\partial\vec{e}}{\partial t}.
+\label{maxwellwave_h.eqn}
+\end{equation}
+
+By assuming that the electric and magnetic fields have plane wave solutions $\vec{e}(t)=\vec{E}e^{i(\omega t-\beta z)}$ and $\vec{h}(t)=\vec{H}e^{i(\omega t-\beta z)}$  and assuming that $\varepsilon=\varepsilon_{0}n^{2}$ and $\mu=\mu_{0}$, where $n=\text{\enquote{refractive index}}$, we can use equation (\ref{cylcurl.eqn}) that was derived previously to get the system of equations required for the basis of TE, TM, and Hybrid modes. Such a basis depends on the cylindrical components of the electric and magnetic-intensity fields $\vec{E}$ and $\vec{H}$ respectively.\\
+
+{\bf [INSERT]} Need to show how the plane wave solutions $\vec{e}(t)$, $\vec{h}(t)$ are derived and identify which assumptions are made for deriving them. Need to relate these types of solutions to the dispersion relation from the perspective of hyperbolic and dispersive waves.\\
+{\bf [INSERT]} Also need to show how to get the two equations (\ref{maxwellwave_h.eqn}) and (\ref{maxwellwave_e.eqn}) and identify which assumptions are made for deriving them.
+
+The following derivation uses (\ref{cylcurl.eqn}) with the plane wave solutions $\vec{e}(t)$ and $\vec{h}(t)$ applied to (\ref{maxwellwave_h.eqn}) and (\ref{maxwellwave_e.eqn}):
+
+\begin{adjustwidth*}{}{-10mm}
+
+\begin{align}
+\vec{\nabla}\times\vec{E}e^{i(\omega t-\beta z)} &= \bigg[\frac{1}{r}\frac{\partial\vec{e}_{z}(t)}{\partial\theta}-\frac{\partial\vec{e}_{\theta}(t)}{\partial z}\bigg]\hat{r}+\bigg[\frac{\partial\vec{e}_{r}(t)}{\partial z}-\frac{\partial\vec{e}_{z}(t)}{\partial r}\bigg]\hat{\theta}+\bigg[\frac{1}{r}\frac{\partial\vec{e}_{r}(t)}{\partial\theta}+\frac{\vec{e}_{\theta}(t)}{r}-\frac{\partial\vec{e}_{\theta}(t)}{\partial r}\bigg]\hat{z}\nonumber
+\\&= \bigg[\frac{1}{r}\frac{\partial E_z}{\partial\theta}e^{i(\omega t-\beta z)}+i\beta\frac{\partial E_{\theta}}{\partial z}e^{i(\omega t-\beta z)}\bigg]\hat{r}\label{max_cyl_deriv1.eqn}
+\\&\quad+ \bigg[-i\beta\frac{\partial E_r}{\partial z}e^{i(\omega t-\beta z)}-\frac{\partial E_z}{\partial r}e^{i(\omega t-\beta z)}\bigg]\hat{\theta}\label{max_cyl_deriv2.ewn}
+\\&\qquad+ \bigg[\frac{1}{r}\frac{\partial E_r}{\partial\theta}e^{i(\omega t-\beta z)}+\frac{E_{\theta}}{r}e^{i(\omega t-\beta z)}-\frac{\partial E_{\theta}}{\partial r}e^{i(\omega t-\beta z)}\bigg]\hat{z}\label{max_cyl_deriv3.eqn}
+\end{align}
+\end{adjustwidth*}
+
+\begin{adjustwidth*}{}{-41mm}
+
+\begin{align}
+-\mu\frac{\partial\vec{h}(t)}{\partial t}=-\mu\frac{\partial\big(\vec{H}e^{i(\omega t-\beta z)}\big)}{\partial t} &= -\mu\bigg[ i\omega H_{r}e^{i(\omega t-\beta z)}\bigg]\hat{r} \label{max_cyl_deriv4.eqn}
+\\&\qquad- \mu\bigg[ i\omega H_{\theta}e^{i(\omega t-\beta z)}\bigg]\hat{\theta}\label{max_cyl_deriv5.eqn}
+\\&\qquad\quad- \mu\bigg[ i\omega H_{z}e^{i(\omega t-\beta z)}\bigg]\hat{z}\label{max_cyl_deriv6.eqn}
+\end{align}
+\end{adjustwidth*}
+
+By factoring out $e^{i(\omega t-\beta z)}$ from the two relations above and equating the components (\ref{max_cyl_deriv1.eqn})-(\ref{max_cyl_deriv3.eqn}) to the respective components (\ref{max_cyl_deriv4.eqn})-(\ref{max_cyl_deriv6.eqn}), the resulting differential equations are the following:
+
+\begin{equation}
+\frac{1}{r}\frac{\partial E_z}{\partial\theta}+i\beta\frac{\partial E_{\theta}}{\partial z}=\frac{1}{r}\frac{\partial E_z}{\partial\theta}+i\beta E_{\theta}=-\mu_{0} i\omega H_r 
+\label{max_cyl_deriv7.eqn}
+\end{equation}
+
+\begin{equation}
+-i\beta\frac{\partial E_r}{\partial z}-\frac{\partial E_z}{\partial r}=-i\beta E_r -\frac{\partial E_z}{\partial r}=-\mu_{0} i\omega H_{\theta}
+\label{max_cyl_deriv8.eqn}
+\end{equation}
+
+\begin{equation}
+\frac{\partial E_{\theta}}{\partial r}+\frac{E_{\theta}}{r}-\frac{1}{r}\frac{\partial E_r}{\partial\theta}= \frac{1}{r}\bigg(\frac{\partial (rE_{\theta})}{\partial r} -\frac{\partial E_r}{\partial\theta}\bigg)=-\mu_{0} i\omega H_r 
+\label{max_cyl_deriv9.eqn}
+\end{equation}
+
+where (\ref{max_cyl_deriv9.eqn}) is rewritten using the product rule on $rE_{\theta}$ with respect to partial differentiation by $r$ and (\ref{max_cyl_deriv7.eqn}) and (\ref{max_cyl_deriv8.eqn}) are rewritten by observing that partial derivatives with respect to $z$ in the transverse directions $\theta$ and $r$ of the fields $E_{\theta}$ and $E_r$ remain fixed when electric or magnetic-intensity wave propagation is assumed to be in the $z$ direction. A similar procedure for (\ref{maxwellwave_h.eqn}) produces another set of three differential equations:
+
+\begin{equation}
+\frac{1}{r}\frac{\partial H_z}{\partial\theta}+i\beta H_{\theta}=i\varepsilon_{0}\omega n^2 E_r 
+\label{max_cyl_deriv10.eqn}
+\end{equation}
+
+\begin{equation}
+-i\beta H_r -\frac{\partial H_z}{\partial r}=i\varepsilon_{0}\omega n^2 E_{\theta} 
+\label{max_cyl_deriv11.eqn}
+\end{equation}
+
+\begin{equation}
+\frac{1}{r}\bigg(\frac{\partial (rH_{\theta})}{\partial r} -\frac{\partial H_r}{\partial\theta}\bigg)=i\varepsilon_{0}\omega n^2 E_z 
+\label{max_cyl_deriv12.eqn}
+\end{equation}\\
+
+The boundary conditions for these sets of coupled differential equations is that the electromagnetic fields are continuous where a change in refractive index occurs. In other words, the tangential components of the electric and magnetic-intensity field are equal between boundaries. In mathematical terms this means:
+
+\begin{equation}
+E_{t}^{(1)}=E_{t}^{(2)}
+\end{equation}
+\begin{equation}
+H_{t}^{(1)}=H_{t}^{(2)}\\
+\end{equation}
+
+$\forall t\epsilon\{r,\theta,z\}$. Now, we may follow chapter 3 of \cite{Okamoto}. First, it is required to derive Maxwell's wave equations,
+
+\begin{equation} 
+\frac{\partial^{2}E_{z}}{\partial r^2}+\frac{1}{r}\frac{\partial E_z}{\partial r}+\frac{1}{r^{2}}\frac{\partial^{2}E_z}{\partial\theta^2}+\big( k^{2}n(r,\theta)^{2}-\beta^{2}\big) E_z =0
+\label{TMwave.eqn}
+\end{equation}
+\begin{equation} 
+\frac{\partial^{2}H_{z}}{\partial r^2}+\frac{1}{r}\frac{\partial H_z}{\partial r}+\frac{1}{r^{2}}\frac{\partial^{2}H_z}{\partial\theta^2}+\big( k^{2}n(r,\theta)^{2}-\beta^{2}\big) H_z =0.
+\label{TEwave.eqn}
+\end{equation}\\
+
+Note that the partial derivatives in the wave equations above are only with respect to either $r$ or $\theta$. So, we may assume that the plane wave solutions of the electric and magnetic-intensity fields may be written with $\vec{E}=\overrightarrow{E(r,\theta)}$ and $\vec{E}=\overrightarrow{E(r,\theta)}$ because the electric and magnetic-intensity fields are independent of the propagation direction whenever it is a solution to the wave equations above. This is a consequence of the coupling of the equations (\ref{max_cyl_deriv7.eqn})-(\ref{max_cyl_deriv9.eqn}) with (\ref{max_cyl_deriv10.eqn})-(\ref{max_cyl_deriv12.eqn}). By isolating $E_\theta$, $E_r$, $H_\theta$ and $H_r$ in (\ref{max_cyl_deriv7.eqn}), (\ref{max_cyl_deriv8.eqn}),(\ref{max_cyl_deriv10.eqn}), and (\ref{max_cyl_deriv11.eqn}) respectively,
+
+\begin{equation}
+E_{\theta}=\frac{-i}{\beta}\bigg(-i\mu_{0}\omega H_r -\frac{1}{r}\frac{\partial E_z}{\partial\theta}\bigg)
+\label{TE1.eqn}
+\end{equation}
+
+\begin{equation}
+E_{r}=\frac{i}{\beta}\bigg(-i\mu_{0}\omega H_{\theta} + \frac{\partial E_z}{\partial r}\bigg)
+\label{TE2.eqn}
+\end{equation}
+
+\begin{equation}
+H_{\theta}=\frac{-i}{\beta}\bigg(i\varepsilon_{0}\omega n^2 E_r - \frac{1}{r}\frac{\partial H_z}{\partial\theta}\bigg)
+\label{TE3.eqn}
+\end{equation}
+
+\begin{equation}
+H_{r}=\frac{i}{\beta}\bigg(i\varepsilon_{0}\omega n^2 E_{\theta} + \frac{\partial H_z}{\partial r}\bigg)
+\label{TE4.eqn}
+\end{equation}
+
+which may be combined together by substituting $E_\theta$, $E_r$, $H_\theta$ and $H_r$ to give the following set of equations:
+
+\begin{align}
+E_{\theta} &= \frac{-i}{\beta}\bigg(-i\mu_{0}\omega \bigg(\frac{i}{\beta}\bigg(i\varepsilon_{0}\omega n^2 E_{\theta} + \frac{\partial H_z}{\partial r}\bigg) \bigg)-\frac{1}{r}\frac{\partial E_z}{\partial\theta}\bigg)\nonumber
+\\&=
+\frac{-i}{\beta}\bigg(\frac{i\mu_{0}\varepsilon_{0}\omega^2 n^2}{\beta} E_{\theta} + \frac{\mu_{0}\omega}{\beta}\frac{\partial H_z}{\partial r}-\frac{1}{r}\frac{\partial E_z}{\partial\theta}\bigg)\nonumber
+\\ \Rightarrow \bigg(1-\frac{\mu_{0}\varepsilon_{0}\omega^{2} n^2}{\beta^2}\bigg) E_{\theta} &= \frac{-i}{\beta}\bigg(\frac{\mu_0\omega}{\beta}\frac{\partial H_z}{\partial r}-\frac{1}{r}\frac{\partial E_z}{\partial\theta}\bigg)\nonumber
+\\ \Rightarrow E_\theta &= \frac{-i}{(k^2 n^2 -\beta^2 )}\bigg(\frac{\beta}{r}\frac{\partial E_z}{\partial\theta}-\omega\mu_0\frac{\partial H_z}{\partial r}\bigg)
+\label{TE5.eqn}
+\\&\nonumber
+\\ E_{r} &= \frac{i}{\beta}\bigg(-i\mu_{0}\omega \bigg(\frac{-i}{\beta}\bigg(i\varepsilon_{0}\omega n^2 E_r - \frac{1}{r}\frac{\partial H_z}{\partial\theta}\bigg)\bigg) +\frac{\partial E_z}{\partial r}\bigg)\nonumber
+\\&=\frac{i}{\beta}\bigg(\frac{-i\mu_0\varepsilon_0\omega^2 n^2}{\beta}E_r+\frac{\mu_0\omega}{r}\frac{\partial H_z}{\partial\theta}+\frac{\partial E_z}{\partial r}\bigg)\nonumber
+\\ \Rightarrow \bigg(1-\frac{\mu_0\varepsilon_0\omega^2 n^2}{\beta^2}\bigg)E_r &= \frac{i}{\beta}\bigg(\frac{\mu_0\omega}{r\beta}\frac{\partial H_z}{\partial\theta}+\frac{\partial E_z}{\partial r}\bigg)\nonumber
+\\ \Rightarrow E_r &= \frac{-i}{(k^2 n^2 -\beta^2 )}\bigg(\beta\frac{\partial E_z}{\partial r} +\frac{\omega\mu_0}{r}\frac{\partial H_z}{\partial\theta}\bigg)
+\label{TE6.eqn}
+\end{align}
+Similarly,
+\begin{equation}
+H_\theta = \frac{-i}{(k^2 n^2 -\beta^2 )}\bigg(\frac{\beta}{r}\frac{\partial H_z}{\partial\theta}+\omega\varepsilon_0 n^2\frac{\partial E_z}{\partial r}\bigg)
+\label{TE7.eqn}
+\end{equation}
+and
+\begin{equation}
+H_r = \frac{-i}{(k^2 n^2 -\beta^2 )}\bigg(\beta\frac{\partial H_z}{\partial r} -\frac{\omega\varepsilon_0 n^2}{r}\frac{\partial E_z}{\partial\theta}\bigg)
+\label{TE8.eqn}
+\end{equation}
+
+
+where $k=\omega\sqrt{\mu_0\varepsilon_0}\,$. Now we have relations for $E_\theta$, $E_r$, $H_\theta$ and $H_r$ with respect to only $H_z$ and $E_z$.  Note that $H_z$ and $E_z$ are the electromagnetic field components in the direction of propagation, $z$, corresponding to the plane wave solution for these respective fields. The transverse electric (TE) and transverse magnetic (TM) modes correspond to the assumptions $E_z=0$ and $H_z=0$ respectively. The Hybrid mode becomes more complicated in its analysis of solutions for $H_z$ and $E_z$ to deduce the dispersion relation and has the assumption that $E_z\neq 0$ and $H_z\neq 0$. The arguments made for the TE mode assumption may be easily applied to those for the TM mode as stated in \cite{Okamoto}. So, these arguments will now be applied to the TM mode assumption and one may refer to those for the TE mode from \cite{Okamoto}. Suppose $H_z=0$. Then, (\ref{TMwave.eqn}) and (\ref{TE5.eqn})-(\ref{TE8.eqn}) become:
+
+\begin{equation} 
+\frac{\partial^{2}E_{z}}{\partial r^2}+\frac{1}{r}\frac{\partial E_z}{\partial r}+\frac{1}{r^{2}}\frac{\partial^{2}E_z}{\partial\theta^2}+\big( k^{2}n(r,\theta)^{2}-\beta^{2}\big) E_z =0
+\label{TMwave1.eqn}
+\end{equation}
+
+\begin{equation}
+E_\theta = \frac{-i}{(k^2 n^2 -\beta^2 )}\frac{\beta}{r}\frac{\partial E_z}{\partial\theta}
+\label{TM1.eqn}
+\end{equation}
+
+\begin{equation}
+E_r = \frac{-i}{(k^2 n^2 -\beta^2 )}\beta\frac{\partial E_z}{\partial r} 
+\label{TM2.eqn}
+\end{equation}
+
+\begin{equation}
+H_\theta = \frac{-i}{(k^2 n^2 -\beta^2 )}\omega\varepsilon_0 n^2\frac{\partial E_z}{\partial r}
+\label{TM3.eqn}
+\end{equation}
+
+\begin{equation}
+H_r = \frac{-i}{(k^2 n^2 -\beta^2 )}\frac{\omega\varepsilon_0 n^2}{r}\frac{\partial E_z}{\partial\theta}
+\label{TM4.eqn}
+\end{equation}
+
+Before proceeding, we are required to assume that $E_z$ and $H_z$ are separable, i.e. $E_z (r,\theta)=R_1 (r)T_1 (\theta)$ and $H_z (r,\theta)=R_2 (r)T_2(\theta)$ for some continuous functions $R_1$, $R_2$ and $T_1$, $T_2$. In addition, another boundary condition is required on the the functions $T_1$ and $T_2$, such that these are oscillatory functions, in order for the boundary value problem for the wave equations (\ref{TMwave.eqn}) and (\ref{TEwave.eqn}) to be well-posed. i.e. $T_1 (\theta)=C_1 e^{i(\alpha_1\theta+\gamma_1 )}$ and $T_2 (\theta)=C_2 e^{i(\alpha_2\theta+\gamma_2 )}$ for some real constants $C_1 ,C_2, \alpha_1, \alpha_2, \gamma_1, \gamma_2\,\epsilon\,\mathbb{R}$. Under these assumptions and by letting 
+\begin{equation}
+\begin{array}{ccc} A=\frac{-i}{(k^2 n^2 -\beta^2 )}, & B_1=\frac{\mu_0\omega}{r}, & B_2=\frac{-\omega\varepsilon_0 n^2}{r},
+\end{array} 
+\nonumber
+\end{equation}
+
+it follows from (\ref{TE6.eqn}) and (\ref{TE8.eqn}) that,
+
+\begin{align}
+E_r &= A\bigg(\beta T_2 (\theta)R_2 '(r) + B_1 R_1 (r)T_1 '(\theta)\bigg)\nonumber
+\\&= A\bigg(\beta C_2 e^{(\alpha_2\theta+\gamma_2 )}R_2 '(r) + i\alpha_1 B_1 R_1 (r)C_1 e^{(\alpha_1\theta+\gamma_1)}\bigg)\nonumber
+\\&= AC_1 e^{(\alpha_1\theta+\gamma_1 )}\bigg(\beta C_2 ' e^{(\alpha_2 '\theta+\gamma_2 ')} R_2 '(r)+i\alpha_1 B_1 R_1 (r)\bigg)
+\label{TM_sep1.eqn}
+\end{align}
+and
+\begin{align}
+H_r &= A\bigg(\beta T_1 (\theta)R_1 '(r) + B_2 R_2 (r)T_2 '(\theta)\bigg)\nonumber
+\\&= A\bigg(\beta C_1 e^{(\alpha_1\theta+\gamma_1)}R_1 '(r) +i\alpha_2 B_2 R_2(r)C_2 e^{(\alpha_2\theta+\gamma_2 )}\bigg)\nonumber
+\\&= AC_1 e^{i(\alpha_1\theta+\gamma_1)}\bigg(\beta R_1 '(r)+i\alpha_2 B_2 R_2 (r)C_2 ' e^{(\alpha_2 '\theta+\gamma_2 ')}\bigg)
+\label{TM_sep2.eqn}
+\end{align}
+
+for some $C_1 '$, $C_2 '$, $\alpha_1 '$, $\alpha_2 '$, $\gamma_1 '$,$\gamma_2 '\,\epsilon\mathbb{R}$ such that $C_{1,2}'=C_{1,2}-C_{2,1}$, $\alpha_{1,2}'=\alpha_{1,2}-\alpha_{2,1}$, and $\gamma_{1,2}'=\gamma_{1,2}-\gamma_{2,1}$. Therefore, for the TM mode where $T_2 (\theta)R_2 (r)=0$, the equations ({\ref{TM_sep1.eqn}) and (\ref{TM_sep2.eqn}) become:
+
+\begin{equation}
+E_r=AT_1 (\theta)\bigg(i\alpha_1 B_1 R_1 (r)\bigg)
+\end{equation}
+
+\begin{equation}
+H_r=AT_1 (\theta)\bigg(\beta R_1 '(r)\bigg)
+\end{equation}
+
+which implies that the {\it real} solution to the boundary value problem posed by (\ref{TM2.eqn}) and (\ref{TM4.eqn}) are, 
+
+\begin{equation}
+G 
+\end{equation}
+
+
+for some functions $g_1 (r)=iA\alpha_1 B_1 R_1 (r)$ and $g_2(r)=A\beta R_1 '(r)$.
+
+
+%\begin{definition} The magnetic intensity is defined by the relation
+
+%\begin{equation}
+%\vec{H}=\frac{1}{\mu_{0}}\vec{B}-\vec{M}=\frac{1}{\mu_{0}}\vec{B}
+%\end{equation}
+
+%where $\vec{M}$ is the magnetic dipole moment per unit volume (magnetization) of the material, which is zero in silica glass fibers. 
+%\end{definition}
+
+%Isotropic material is where electic polarization is in the direction of the electric field and anisotropic material has opposite direction of polarization. The electric polarization is defined with respect to the first order susceptability in Reitz and determines the electric field produced by the material independent of an applied electric field.
+
+
+\section{Whitham Summary}
+
+\subsection{Chapter 1}
+
+A particular non restrictive definition of a wave is \enquote{any recognizable signal that is transferred from one part of the medium to another with a recognizable velocity of propagation", where, "the signal may be any feature of the disturbance},..., \enquote{provided that it can be clearly recognized and its location at any time can be determined}(p.2)\cite{Whitham}. The book by Whitham is divided between hyperbolic and dispersive waves. The hyperbolic waves arise from hyperbolic partial differential equations. Dispersive waves arise from restrictions on the type of solution one permits.\\
+
+\enquote{The prototype for hyperbolic waves is often taken to be the wave equation,} (p.3)\cite{Whitham}
+
+\begin{equation}
+\varphi_{tt}=c_{0}^{2}\,\nabla^{2}\varphi
+\label{wave.eqn}
+\end{equation}
+
+%insert discussion on wave equation from Knobel and MATH4700 notes.
+
+When dealing with a linear equation, \enquote{a linear dispersive system is any system which admits solutions of the form,
+
+\begin{equation}
+\varphi = a\,cos(\kappa x - \omega t)
+\label{dispersivesolution.eqn}
+\end{equation}
+
+where the frequency $\omega$ is a definite real function of the wave number $\kappa$ and the function $\omega(\kappa)$ is determined by the particular system. The phase speed is then $\frac{\omega(\kappa)}{\kappa}$ and the waves are usuallu said to be 'dispersive' if this pase speed is not a constant, but depends on $\kappa$. The term [dispersion] refers to the fact that a more general solution will consist of the superposition of several modes like \ref{dispersivesolution.eqn} with different $\kappa$.}...\enquote{If the phase speed $\frac{\omega}{\kappa}$ is not the same for all $\kappa$, that is $\omega\neq c_{0}\kappa$ where $c_{0}$ is some constant, the modes with different $\kappa$ will propagate at different speed; they will disperse.}(p.3)\cite{Whitham}
+
+\enquote{Another example [for dispersion] is the classical theory for the dispersive effects of electromagnetic waves in dielectrics; this lead to [the dispersion relation], 
+
+\begin{equation}
+(\omega^{2}-\nu_{0}^{2})(\omega^{2}-c_{0}^{2}\kappa^{2})=\kappa^{2}\nu_{p}^{2}
+\label{dispersionrelation.eqn}
+\end{equation}
+
+where $c_{0}$ is the speed of light, $\nu_{0}$ is the natural frequency of the oscillator, and $\nu_{p}$ is the plasma frequency}(p.9-10)\cite{Whitham}. For linear problems, Fourier series solutions can be obtained in the form,
+
+\begin{equation}
+\varphi_{\kappa}=\int_{0}^{\infty}F(\kappa)cos\big(\kappa x- W(\kappa)t\big)\,d\kappa
+\label{fourier1.eqn}
+\end{equation}
+
+where each value of $\kappa$ corresponds to some value of $F(\kappa)$. Also note that $F(\kappa)$ can be obtained using the inverse Fourier transform and initial conditions. 
+\enquote{The solution in (\ref{fourier1.eqn}) is a superposition of wavetrains of different wavenumbers, each traveling with its own phase speed,
+
+\begin{equation}
+c(\kappa)=\frac{W(\kappa)}{\kappa}.
+\label{phasespeed.eqn}
+\end{equation}
+
+As time evolves, these different component modes 'disperse', with the result that a single concentrated hump, for example, disperses into a whole oscillatory train. {\bf This process is studied by various asymptotic expansions of (\ref{fourier1.eqn})}. The key concept that comes out of the analysis is that of the {\it group velocity} defined as,
+
+\begin{equation}
+C(\kappa )=\frac{dW}{d\kappa}
+\label{groupvelocity.eqn}
+\end{equation}
+
+The oscillatory train arising from (\ref{fourier1.eqn}) does not have constant wavelength; the whole range of wave numbers $\kappa$ is still present. In a sense to be explained, the different values of wave number propagate through this oscillatory train and the speed of propagation is the group velocity (\ref{groupvelocity.eqn})}(p.10)\cite{Whitham}.\\
+
+{\bf INSERT}[Insert from (p.10-11) the derivation of the simple wave equation \begin{equation} 
+\frac{\partial k}{\partial t} + C(k)\frac{\partial k}{\partial x}=0 
+\end{equation}
+where $k(x,t)\neq\kappa$ and $C(k)$ is the group velocity, {\bf based on the assumption that the nonuniform oscillatory wave is described approximately in the form $\varphi=acos\theta$}. Relate this to the physics literature and show that Bessel's functions provide solutions for guided modes where the modes are determined by assumptions on the axial components of the electric and magnetic intensity fields, $E_{z}$ and $H_{z}$ respectively as shown beginning on (p.48) of \cite{Okamoto}.]
+
+\subsection{Chapter 7}
+
+
+
+
+
+\subsection{Sample Subsection}
+To include a graph, un-comment out the following text (remove the percentage signs), assuming that the graph is in a EPS file called graph1.eps that you have created beforehand using any plotting program. Adjust the numbers to change the size of the graph.
+
+
+%%%\begin{figure}[h!]
+%%%\centerline{\includegraphics[height = 100mm, width=120mm, angle=0]{graph1.eps}
+%%%\put(-27,20){${\bf r}$}
+%%%\put(-320,280){${\bf \phi(r)}$}
+%%%}
+%%%\caption{Caption for your figure}
+%%%\label{figure5}
+%%%\end{figure}
+
+%%%You can use the \put command to add information to the graph, e.g. axis labels. Use the \label command to refer to this graph in the text. E.g.
+%%Figure \ref{figure5} shows a plot of my my solution.
+
+\section{Conclusions}
+
+Summarize the content of your document
+
+\appendix
+
+\section{Appendix title}
+
+\subsection{First subsection of appendix }
+
+In the next section I have included a few references to show you how to include a list of references at the end of your report. To cite any of these books or articles any where in the text, you can either write \cite{Knobel}, \cite{Okamoto}, which will give you the reference numbers [1], [2], or you can write ``Author (Year''), e.g. Abramowitz and Stegun (1964), Bacmeister and Pierrehumbert (1988).
+
+\begin{thebibliography}{99}
+
+\bibitem{Flei} Fleisch, Daniel A., 2008, {\it A Student's Guide to Maxwell's Equations}, Cambridge University Press.
+
+\bibitem{Reitz} Reitz, John R., Milford, Frederick J., Christy, Robert W., 2009 {\it Foundations of Electromagnetic Theory, 4th Ed.}, Pearson. 
+
+\bibitem{Knobel} Knobel, Roger 2000, {\it An Introduction to the Mathematical Theory of Waves}, The American Mathematical Society.
+
+\bibitem{Okamoto} Okamoto, Katsunari, 2000,  {\it Fundamentals of Optical Waveguides}, Academic Press.
+
+\bibitem{Whitham} Whitham, G.B., 1999, {\it Linear and Non-Linear Waves}, Wiley.
+
+\bibitem{Belanger} Belanger, Pierre A., 1993 {\it Optical Fiber Theory}, World Scientific.
+
+%\bibitem{BS2} Bailey, D.H., Swarztrauber, P.N., 1994, A fast method for the numerical evaluation of continuous Fourier and Laplace transforms, {\it J. Sci. Comput.}, {\bf 15}, 1105-1110.
+
+%\bibitem{B} Baines, P., 1995,  {\it Topographic effects in stratified flows}, Cambridge University Press, 482 pp.
+
+%\bibitem{Bl1} B\'{e}land, M., 1976, Numerical study of the nonlinear Rossby wave critical level development in a barotropic zonal flow,  {\it J. Atmos. Sci.}, {\bf 33}, 2066-2078.
+
+
+\end{thebibliography}
+
+
+\addtocontents{toc}{\contentsline {section}{\numberline {}References}{2}} %add in your bibliography page number here, so it will appear in the contents list
+
+\end{document}
